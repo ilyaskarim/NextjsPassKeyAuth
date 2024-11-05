@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int     @id @default(autoincrement())
+  email                String  @unique
+  name                 String?
+  currentChallenge String?
+
+  PassKeys Passkey[]
+}
+
+model Passkey {
+  cred_id          String   @id
+  cred_public_key  Bytes
+  user_id Int
+  webauthn_user_id String   @unique
+  counter          Int
+  backup_eligible  Boolean
+  backup_status    Boolean
+  transports       String
+  created_at       DateTime @default(now())
+  last_used        DateTime?
+  
+  user User @relation(fields: [user_id], references: [id])
+}

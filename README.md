@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Next.js Passkey Authentication Example
+======================================
 
-## Getting Started
+Welcome to the **Next.js Passkey Authentication** project! This is a simple Next.js application that demonstrates passwordless authentication using **passkeys**. With this app, users can register and log in securely with passkeys instead of traditional passwords, utilizing the WebAuthn standard and leveraging the `simplewebauthn` package for easier integration.
 
-First, run the development server:
+Features
+--------
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **Passwordless Authentication**: Users authenticate using passkeys, offering a seamless and secure login experience.
+*   **WebAuthn Integration**: Uses the WebAuthn standard for handling passkey-based registration and authentication.
+*   **SQLite Database**: Stores user and credential data in a SQLite database, making it easy to set up and run locally.
+*   **Prisma ORM**: Manages database interactions with Prisma, simplifying data handling.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tech Stack
+----------
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*   **Next.js**: The framework for building the React application.
+*   **simplewebauthn**: A library for handling WebAuthn interactions on both the client and server.
+*   **Prisma**: An ORM for managing database interactions with SQLite.
+*   **SQLite**: A lightweight database used for storing user and passkey data.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Getting Started
+---------------
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+Ensure you have the following installed:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*   [Node.js](https://nodejs.org/) (v14 or higher)
+*   [npm](https://www.npmjs.com/) (usually included with Node.js)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1.  **Clone the repository**:
+    
+    bash
+    
+    Copy code
+    
+    `git clone https://github.com/ilyaskarim/NextjsPassKeyAuth.git cd NextjsPassKeyAuth`
+    
+2.  **Install dependencies**:
+    
+    bash
+    
+    Copy code
+    
+    `npm install`
+    
+3.  **Set up Prisma and SQLite database**:
+    
+    Initialize the SQLite database and generate the Prisma client:
+    
+    bash
+    
+    Copy code
+    
+    `npx prisma migrate dev --name init`
+    
+    This will create a new SQLite database and apply the initial schema, setting up tables to store user and passkey data.
+    
+4.  **Environment Variables**:
+    
+    Create a `.env` file in the root directory with the following contents:
+    
+    plaintext
+    
+    Copy code
+    
+    `NEXT_PUBLIC_ORIGIN=http://localhost:3000`
+    
+    Make sure to configure any other environment variables if required by your setup.
+    
+5.  **Run the development server**:
+    
+    bash
+    
+    Copy code
+    
+    `npm run dev`
+    
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
+    
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   **pages/api/auth/**: Contains API routes for handling registration and login via WebAuthn.
+*   **lib/db.js**: Handles database interactions, including retrieving and storing user and credential data.
+*   **components/**: React components used for building the UI.
+*   **styles/**: Contains Tailwind CSS files for styling.
+
+Usage
+-----
+
+1.  **Register a New User**: Enter your email and follow the prompts to create a passkey.
+2.  **Authenticate with Passkey**: Once registered, use your passkey to log in without a password.
+
+### Example Flow
+
+1.  **Registration**:
+    
+    *   The client requests a registration challenge from the server.
+    *   The user’s device creates a passkey and sends the credential data back to the server.
+    *   The server verifies and saves the credential data in the database.
+2.  **Login**:
+    
+    *   The client requests an authentication challenge from the server.
+    *   The user authenticates with their device, sending the response back to the server.
+    *   The server verifies the response and grants access.
+
+Customization
+-------------
+
+*   **Configure Database**: Adjust the Prisma schema (in `prisma/schema.prisma`) to fit your specific needs.
+*   **Tailwind CSS**: Customize the styling in `tailwind.config.js` and `styles/globals.css` as desired.
+
+Troubleshooting
+---------------
+
+*   **RP ID and Origin Mismatch**: Ensure that your `RP ID` is set to `"localhost"` in the development environment and `expectedOrigin` is `"http://localhost:3000"`.
+*   **Database Errors**: Make sure to run `npx prisma migrate dev` if you make changes to the schema.
+
+Future Improvements
+-------------------
+
+*   **Production Setup**: Add configurations for production deployment.
+*   **Support for More Databases**: Easily switch to PostgreSQL, MySQL, etc., by updating the Prisma schema and `.env` configurations.
+*   **Enhanced Error Handling**: Improve error messages and handling across API routes.
+
+Contributing
+------------
+
+Feel free to submit issues or pull requests if you have suggestions for improvement!
+
+License
+-------
+
+This project is licensed under the MIT License.
+
+* * *

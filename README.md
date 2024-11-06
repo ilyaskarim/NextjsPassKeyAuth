@@ -33,15 +33,15 @@ Ensure you have the following installed:
 
 1.  **Clone the repository**:
     
-```bash
-git clone https://github.com/ilyaskarim/NextjsPassKeyAuth.git cd NextjsPassKeyAuth
-```
+    ```bash
+    git clone https://github.com/ilyaskarim/NextjsPassKeyAuth.git cd NextjsPassKeyAuth
+    ```
     
 2.  **Install dependencies**:
     
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
     
 3.  **Set up Prisma and SQLite database**:
     
@@ -59,9 +59,9 @@ npm install
     
     Create a `.env` file in the root directory with the following contents:
     
-```
-NEXT_PUBLIC_ORIGIN=http://localhost:3000
-```
+    ```
+    NEXT_PUBLIC_ORIGIN=http://localhost:3000
+    ```
     
     Make sure to configure any other environment variables if required by your setup.
     

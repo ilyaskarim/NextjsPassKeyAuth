@@ -74,10 +74,10 @@ Ensure you have the following installed:
 
 ### Project Structure
 
-*   **pages/api/auth/**: Contains API routes for handling registration and login via WebAuthn.
-*   **lib/db.js**: Handles database interactions, including retrieving and storing user and credential data.
-*   **components/**: React components used for building the UI.
-*   **styles/**: Contains Tailwind CSS files for styling.
+*   **pages/api/**: Contains API routes for handling registration and login via WebAuthn.
+*   **prisma/**: Contains the Prisma schema and client configuration.
+*   **public/**: Contains static assets like images and favicons.
+*   **styles/**: Contains global CSS styles and Tailwind CSS configurations.
 
 Usage
 -----

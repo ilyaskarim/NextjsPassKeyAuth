@@ -47,11 +47,9 @@ Ensure you have the following installed:
     
     Initialize the SQLite database and generate the Prisma client:
     
-    bash
-    
-    Copy code
-    
-    `npx prisma migrate dev --name init`
+    ```bash
+    npx prisma migrate dev --name init
+    ```
     
     This will create a new SQLite database and apply the initial schema, setting up tables to store user and passkey data.
     
@@ -67,12 +65,10 @@ Ensure you have the following installed:
     
 5.  **Run the development server**:
     
-    bash
-    
-    Copy code
-    
-    `npm run dev`
-    
+    ```bash
+    npm run dev
+    ```
+
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
     
 

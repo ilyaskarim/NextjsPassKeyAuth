@@ -1,4 +1,3 @@
-// app/api/hello/route.ts
 import prisma from "@/prisma";
 import { verifyRegistrationResponse } from "@simplewebauthn/server";
 import { NextResponse, NextRequest } from "next/server";
@@ -27,8 +26,6 @@ export async function POST(req: NextRequest) {
     expectedRPID: "localhost",
   });
 
-  console.log(verification);
-
   if (verification.verified) {
     await prisma.passkey.create({
       data: {
@@ -49,5 +46,6 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     verified: verification.verified,
+    message: "Registration using pass key completed"
   });
 }
